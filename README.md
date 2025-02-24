@@ -1,6 +1,7 @@
 # HotCrossBuns
 
-A distributed pub-sub model built using the HotStuff consensus algorithm
+A distributed pub-sub model built using the HotStuff consensus algorithm.
+Refer [PROTOCOL.md](./PROTOCOL.md)
 
 ## Build Instructions
 
