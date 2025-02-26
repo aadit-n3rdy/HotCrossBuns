@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "comms/node.hpp"
+#include "comms/replica.hpp"
 
 int main(int argc, char *argv[]) {
   std::cout << "Hello server\n";
 
-  Node *server = new Node();
+  Replica *server = new Replica();
 
   server->create_socket();
   server->listen();

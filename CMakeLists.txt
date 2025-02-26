@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14)
 project(HotCrossBuns)
 
 # Files in src/
-add_library(hcb STATIC src/hcb.cpp src/comms/node.cpp)
+add_library(hcb STATIC src/hcb.cpp src/comms/replica.cpp)
 target_include_directories(hcb PUBLIC incl/)
 
 # Files in app/

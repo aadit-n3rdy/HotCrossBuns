@@ -4,29 +4,29 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "comms/node.hpp"
+#include "comms/replica.hpp"
 
-Node::Node() {
+Replica::Replica() {
   this->local_viewNumber = 0;
   this->global_viewNumber = 0;
   this->otherIdx = 0;
 }
 
-void Node::create_socket() {
+void Replica::create_socket() {
   this->listeningSock = socket(AF_INET, SOCK_STREAM, 0);
   this->sendingSock = socket(AF_INET, SOCK_STREAM, 0);
 }
 
-void Node::close_socket() { close(this->listeningSock); }
+void Replica::close_socket() { close(this->listeningSock); }
 
-void Node::register_node() {
+void Replica::register_node() {
   this->otherAddrs[otherIdx].sin_family = AF_INET;
   this->otherAddrs[otherIdx].sin_port = htons(8080);
   this->otherAddrs[otherIdx].sin_addr.s_addr = INADDR_ANY;
   otherIdx++;
 }
 
-void Node::listen() {
+void Replica::listen() {
   int err;
 
   this->Addr.sin_family = AF_INET;
@@ -43,7 +43,7 @@ void Node::listen() {
   ::listen(this->listeningSock, MAX_CONN);
 }
 
-void Node::recv_msg() {
+void Replica::recv_msg() {
   int clientSock;
   char buff[BUFF_SIZE] = {0};
 
@@ -54,7 +54,7 @@ void Node::recv_msg() {
 
   close(this->listeningSock);
 }
-void Node::send_msg(int idx, std::string buff) {
+void Replica::send_msg(int idx, std::string buff) {
   int err;
 
   err = connect(this->sendingSock, (struct sockaddr *)&otherAddrs[idx],

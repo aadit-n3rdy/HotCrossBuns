@@ -6,11 +6,12 @@
 #define BUFF_SIZE 1024
 #define NODE_COUNT 10
 
+#include "hotbuns/utils.hpp"
 #include <netinet/in.h>
 #include <string>
 #include <sys/socket.h>
 
-class Node {
+class Replica {
 private:
   int local_viewNumber;
   int global_viewNumber;
@@ -20,8 +21,10 @@ private:
   int otherIdx;
   int listeningSock, sendingSock;
 
+  Utilities utils;
+
 public:
-  Node();
+  Replica();
 
   void create_socket();
 
@@ -35,7 +38,7 @@ public:
 
   void send_msg(int idx, std::string buff);
 
-  ~Node();
+  ~Replica();
 };
 
 #endif // !NODE_HPP

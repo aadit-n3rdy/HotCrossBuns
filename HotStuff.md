@@ -2,13 +2,6 @@
 
 ## Data Structures
 
-### Message
-- m.type = {new-view, prepare, pre-commit, commit, decide}
-- m.node = msg
-- m.justify = carries QC
-
-m = {m.type, m.view_no, m.node}
-
-
-### Quourum certificates
--
+### Utilities Class (Refer incl/hotbuns/utils.hpp)
+- The utilities class is part of every replica
+- It implements all the bookkeeping vars and the algorithms

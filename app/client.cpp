@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "comms/node.hpp"
+#include "comms/replica.hpp"
 
 int main(int argc, char *argv[]) {
   std::string buff;
@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
   std::cout << "Enter string: \n";
   std::getline(std::cin, buff);
 
-  Node *client = new Node();
+  Replica *client = new Replica();
 
   client->create_socket();
 
