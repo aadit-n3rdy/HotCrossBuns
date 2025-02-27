@@ -3,13 +3,18 @@
 #include "comms/replica.hpp"
 
 int main(int argc, char *argv[]) {
-  std::cout << "Hello server\n";
+  std::cout << "Starting Server: \n";
+  std::cout << "--------------\n";
+
+  Msg msg;
 
   Replica *server = new Replica();
 
   server->create_socket();
   server->listen();
-  server->recv_msg();
+  msg = server->recv_msg();
+
+  server->view_msg(&msg);
 
   server->close_socket();
 

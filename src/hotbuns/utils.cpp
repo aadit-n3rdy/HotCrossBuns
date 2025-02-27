@@ -1,12 +1,21 @@
 #include "hotbuns/utils.hpp"
 
+// constructor for QuroumCertificate class
+QuroumCertificate::QuroumCertificate() { this->node = new Node(); }
+
+// constructor for Msg class
+Msg::Msg() {
+  this->node = new Node();
+  this->justify = new QuroumCertificate();
+}
+
 // function to check if a passed npde extends from the lockedQC node
 // TODO: currently function returns 1 by default
 // change function to check if lockedQC node extends to qc
 int Utilities::node_extends(QuroumCertificate *qc) { return 1; }
 
 // function to create a message
-Msg *Utilities::create_msg(mtype type, Node node, QuroumCertificate qc) {
+Msg *Utilities::create_msg(mtype type, Node *node, QuroumCertificate *qc) {
   Msg *msg = new Msg();
 
   msg->type = type;
@@ -19,11 +28,21 @@ Msg *Utilities::create_msg(mtype type, Node node, QuroumCertificate qc) {
 
 // function to sign a msg for voting
 // NOTE: currently signing is not secure
-Msg *Utilities::vote_msg(mtype type, Node node, QuroumCertificate qc) {
+Msg *Utilities::vote_msg(mtype type, Node *node, QuroumCertificate *qc) {
   Msg *msg = create_msg(type, node, qc);
-  msg->partialSig.push_back(node.cmd);
+  msg->partialSig.push_back(node->cmd);
 
   return msg;
+}
+
+// function to create node
+Node *Utilities::create_leaf(std::string cmd, Node *parent) {
+  Node *node = new Node();
+
+  node->cmd = cmd;
+  node->parent = parent;
+
+  return node;
 }
 
 // function to create a leaf

@@ -14,18 +14,21 @@ public:
 
 class QuroumCertificate {
 public:
+  QuroumCertificate();
   mtype type;
   int viewNumber;
-  Node node;
+  Node *node;
   std::vector<std::string> sig;
 };
 
 class Msg {
 public:
+  Msg();
+
   int viewNumber;
   mtype type;
-  Node node;
-  QuroumCertificate justify;
+  Node *node;
+  QuroumCertificate *justify;
   std::vector<std::string> partialSig;
 };
 
@@ -38,9 +41,11 @@ private:
   int node_extends(QuroumCertificate *qc);
 
 public:
-  Msg *create_msg(mtype type, Node node, QuroumCertificate qc);
+  Msg *create_msg(mtype type, Node *node, QuroumCertificate *qc);
 
-  Msg *vote_msg(mtype type, Node node, QuroumCertificate qc);
+  Msg *vote_msg(mtype type, Node *node, QuroumCertificate *qc);
+
+  Node *create_leaf(std::string cmd, Node *parent);
 
   QuroumCertificate *create_qc(Msg *msg);
 

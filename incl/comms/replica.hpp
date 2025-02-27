@@ -8,7 +8,6 @@
 
 #include "hotbuns/utils.hpp"
 #include <netinet/in.h>
-#include <string>
 #include <sys/socket.h>
 
 class Replica {
@@ -23,6 +22,8 @@ private:
 
   Utilities utils;
 
+  std::string enum_as_str(mtype type);
+
 public:
   Replica();
 
@@ -34,9 +35,13 @@ public:
 
   void listen();
 
-  void recv_msg();
+  Msg recv_msg();
 
-  void send_msg(int idx, std::string buff);
+  void send_msg(int idx, Msg *msg);
+
+  void view_msg(Msg *msg);
+
+  Utilities *get_utils();
 
   ~Replica();
 };
