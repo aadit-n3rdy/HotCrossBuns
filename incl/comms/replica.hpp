@@ -12,6 +12,8 @@
 
 class Replica {
 private:
+  bool leader;
+
   int local_viewNumber;
   int global_viewNumber;
 
@@ -42,6 +44,8 @@ public:
   void view_msg(Msg *msg);
 
   Utilities *get_utils();
+
+  bool declare_leader();
 
   ~Replica();
 };

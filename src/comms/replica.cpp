@@ -17,7 +17,10 @@ void Replica::create_socket() {
   this->sendingSock = socket(AF_INET, SOCK_STREAM, 0);
 }
 
-void Replica::close_socket() { close(this->listeningSock); }
+void Replica::close_socket() {
+  close(this->listeningSock);
+  close(this->sendingSock);
+}
 
 void Replica::register_node() {
   this->otherAddrs[otherIdx].sin_family = AF_INET;
@@ -200,6 +203,8 @@ std::string Replica::enum_as_str(mtype type) {
     return "UNKNOWN";
   }
 }
+
+// function to declare self as leader
 
 // function to return pointer to class variable utils
 Utilities *Replica::get_utils() { return &this->utils; }

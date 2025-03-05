@@ -22,6 +22,7 @@ public:
 };
 
 class Msg {
+private:
 public:
   Msg();
 
@@ -54,6 +55,8 @@ public:
   int matching_qc(QuroumCertificate *qc, mtype type, int viewNumber);
 
   int safenode(Node *node, QuroumCertificate *qc);
+
+  void HotBuns();
 };
 
 #endif // !UTILS_HPP
